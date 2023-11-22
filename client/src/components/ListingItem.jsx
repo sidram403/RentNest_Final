@@ -54,9 +54,9 @@ export default function ListingItem({ listing }) {
                 {listing.type === 'rent' ? ' Monthly Rent' : "Sale"}
                 </div>
                 <div className="stat-value text-2xl">
-                {listing.offer
-              ? listing.discountPrice.toLocaleString('en-US')
-              : listing.regularPrice.toLocaleString('en-US')}
+                ₹{" "}{listing.offer
+              ? listing.discountPrice.toLocaleString('en-IN')
+              : listing.regularPrice.toLocaleString('en-IN')}
                 </div>
               </div>
 

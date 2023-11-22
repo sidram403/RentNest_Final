@@ -6,6 +6,7 @@ import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import Testimonails from './Testimonails';
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -162,6 +163,9 @@ export default function Home() {
           </div>
         </div>
       )}
+    </div>
+    <div>
+      <Testimonails />
     </div>
   </div>
   );
