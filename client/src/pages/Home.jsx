@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -12,6 +13,14 @@ export default function Home() {
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
   console.log(offerListings);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Auto play the video when the component mounts
+    videoRef.current.play();
+
+  }, []);
+
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
@@ -46,89 +55,114 @@ export default function Home() {
     fetchOfferListings();
   }, []);
   return (
-    <div>
-      {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
-          Find your next <span className='text-slate-500'>perfect</span>
-          <br />
-          place with ease
-        </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
-          Sahand Estate is the best place to find your next perfect place to
-          live.
-          <br />
-          We have a wide range of properties for you to choose from.
+    <div >
+    <div className=" relative justify-center gap-6 text-center items-center py-12 md:py-36 px-3 max-w-6xl mx-auto flex flex-col md:flex-row z-10 ">
+      <div className="flex-1 flex justify-center items-start flex-col xl:px-0 sm:px-16 px-6 ">
+        <div className="flex flex-row justify-between items-center w-full">
+          <h1 className="flex-1 font-poppins font-semibold sm:text-[55px] text-[45px] text-white sm:leading-[70px] leading-[75-px]">
+            Discover Most Suitable
+            <span className="text-gradient"> Rental Property </span>{" "}
+          </h1>
         </div>
-        <Link
-          to={'/search'}
-          className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
-        >
-          Let's get started...
-        </Link>
-      </div>
-
-      {/* swiper */}
-      <Swiper navigation>
-        {offerListings &&
-          offerListings.length > 0 &&
-          offerListings.map((listing) => (
-            <SwiperSlide>
-              <div
-                style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                  backgroundSize: 'cover',
-                }}
-                className='h-[500px]'
-                key={listing._id}
-              ></div>
-            </SwiperSlide>
-          ))}
-      </Swiper>
-
-      {/* listing results for offer, sale and rent */}
-
-      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
-        {offerListings && offerListings.length > 0 && (
-          <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
-            </div>
-            <div className='flex flex-wrap gap-4'>
-              {offerListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
-              ))}
-            </div>
-          </div>
-        )}
-        {rentListings && rentListings.length > 0 && (
-          <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
-            </div>
-            <div className='flex flex-wrap gap-4'>
-              {rentListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
-              ))}
-            </div>
-          </div>
-        )}
-        {saleListings && saleListings.length > 0 && (
-          <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
-            </div>
-            <div className='flex flex-wrap gap-4'>
-              {saleListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
-              ))}
-            </div>
-          </div>
-        )}
+        <h1 className="font-poppins font-semibold sm:text-[55px] text-[45px] text-white sm:leading-[70px] leading-[75-px] w-full">
+          in Bengaluru.
+        </h1>
+        <p className="font-poppins text-white font-bold text-[18px] leading-[30.8px] w-full  mt-5">
+          Unlock the Door to Your Perfect Home in Bangalore with RentNest!
+        </p>
+        <div className="w-full mt-10">
+          <Link to="/search">
+            <button
+              type="button"
+              className="text-white  bg-gray-800 hover:bg-gray-900 focus:outline-none  focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-2xl px-5 py-2  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            >
+              <p>
+                <span>
+                  Explore Now{" "}
+                  <DoubleArrowIcon className="text-5xl items-center" />
+                </span>
+              </p>
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
+
+    {/* Swiper */}
+    <div className="w-[100%] h-[700px] overflow-hidden absolute top-20 left-0 z-0">
+    <div className="w-full h-full absolute top-0 left-0 bg-black opacity-50" />
+      <video className="w-full h-[100%] md:h-[90%] object-cover" ref={videoRef} muted loop>
+        <source src="./public/hero-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+
+    {/* Listing results */}
+    <div className="bg-slate-200 max-w-8xl mx-auto p-3 px-3 md:px-10 flex flex-col gap-6 my-10 relative">
+      {offerListings && offerListings.length > 0 && (
+        <div>
+          <div className="my-3">
+            <h2 className="text-2xl font-semibold text-slate-600">
+              Recent Offers
+            </h2>
+            <Link
+              className="text-sm text-blue-800 hover:underline"
+              to={"/search?offer=true"}
+            >
+              Show more offers
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {offerListings.map((listing) => (
+              <ListingItem key={listing._id} listing={listing} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {rentListings && rentListings.length > 0 && (
+        <div>
+          <div className="my-3">
+            <h2 className="text-2xl font-semibold text-slate-600">
+              Recent places for rent
+            </h2>
+            <Link
+              className="text-sm text-blue-800 hover:underline"
+              to={"/search?type=rent"}
+            >
+              Show more places for rent
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {rentListings.map((listing) => (
+              <ListingItem key={listing._id} listing={listing} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {saleListings && saleListings.length > 0 && (
+        <div>
+          <div className="my-3">
+            <h2 className="text-2xl font-semibold text-slate-600">
+              Recent places for sale
+            </h2>
+            <Link
+              className="text-sm text-blue-800 hover:underline"
+              to={"/search?type=sale"}
+            >
+              Show more places for sale
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-4">
+            {saleListings.map((listing) => (
+              <ListingItem key={listing._id} listing={listing} />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
   );
 }
