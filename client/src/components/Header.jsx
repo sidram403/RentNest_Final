@@ -68,18 +68,15 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <div >
-                <img src={currentUser.avatar} className="rounded-full h-11 w-11 object-cover" />
+                <img src={currentUser.avatar} className="rounded-full h-11 w-11 object-cover" alt='profile pic' />
               </div>
-              // <img
-              //   className="rounded-full h-10 w-10 object-cover"
-              //   src={currentUser.avatar}
-              //   alt="profile pic"
-              // />
+              
             ) : (
               <button className="uppercase p-2 px-5 border-2 border-black text-black rounded-lg text-bold hover:bg-black hover:text-white transition ease-in-out delay-150 ">
                 {" "}
-                Sing in
+                Login
               </button>
+              
             )}
           </Link>
         </div>

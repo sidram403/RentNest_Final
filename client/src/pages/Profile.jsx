@@ -162,7 +162,7 @@ export default function Profile() {
   };
   return (
     <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      <h1 className='text-3xl font-semibold text-center my-7 text-black'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -195,7 +195,7 @@ export default function Profile() {
           placeholder='username'
           defaultValue={currentUser.username}
           id='username'
-          className='border p-3 rounded-lg'
+          className='border p-3 rounded-lg bg-white text-black'
           onChange={handleChange}
         />
         <input
@@ -203,7 +203,7 @@ export default function Profile() {
           placeholder='email'
           id='email'
           defaultValue={currentUser.email}
-          className='border p-3 rounded-lg'
+          className='border p-3 rounded-lg bg-white text-black'
           onChange={handleChange}
         />
         <input
@@ -211,7 +211,7 @@ export default function Profile() {
           placeholder='password'
           onChange={handleChange}
           id='password'
-          className='border p-3 rounded-lg'
+          className='border p-3 rounded-lg bg-white text-black'
         />
         <button
           disabled={loading}
@@ -251,7 +251,7 @@ export default function Profile() {
 
       {userListings && userListings.length > 0 && (
         <div className='flex flex-col gap-4'>
-          <h1 className='text-center mt-7 text-2xl font-semibold'>
+          <h1 className='text-center mt-7 text-2xl font-semibold text-black'>
             Your Listings
           </h1>
           {userListings.map((listing) => (

@@ -165,7 +165,12 @@ export default function Listing() {
 
                   <div className="stat place-items-center py-4 px-2">
                     <div className="stat-title text-black">Deposit Amount</div>
-                    <div className="stat-value text-2xl">₹ 89,400</div>
+                    <div className="stat-value text-2xl">
+                    ₹{" "}
+                      {
+                         listing.depositPrice.toLocaleString("en-IN")
+                        }
+                    </div>
                   </div>
                 </div>
               </div>
