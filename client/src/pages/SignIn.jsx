@@ -37,7 +37,14 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate("/");
+      const storedLocation = await localStorage.getItem("location");
+      if(storedLocation){
+        navigate(`${storedLocation}`)
+        localStorage.removeItem("location")
+      }else{
+        navigate("/");
+
+      }
     } catch (error) {
       dispatch(signInFailure(error.message));
     }

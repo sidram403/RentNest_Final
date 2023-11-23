@@ -1,10 +1,22 @@
 import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 import { FaBath, FaBed, FaChair } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 export default function ListingItem({ listing }) {
+
+  const [discPerc, setDiscPerc] = useState(null);
+
+  useEffect(() =>{
+    const discountPerc = (((listing.regularPrice - listing.discountPrice)/listing.regularPrice) * 100).toFixed(0);
+    setDiscPerc(discountPerc);
+  }, [listing.offer])
+
+  
+
   return (
-    <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[320px]">
+    <div className="bg-white relative shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[320px]">
+      
       <Link to={`/listing/${listing._id}`}>
         <img
           src={
@@ -14,6 +26,9 @@ export default function ListingItem({ listing }) {
           alt="listing cover"
           className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
         />
+       {listing.offer &&  <div className="bg-green-700 text-white absolute top-0 right-0 w-22 h-10 z-10 p-2 font-bold ">
+          {discPerc}% Off
+        </div>}
         <div className="p-3 flex flex-col gap-2 w-full">
           <p className="truncate text-lg font-semibold text-slate-700">
             {listing.name}
