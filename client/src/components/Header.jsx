@@ -2,10 +2,13 @@ import { FaSearch } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import SearchResults from './SearchResults';
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchResults, setIsSearchResults] = useState(false)
+
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,11 @@ export default function Header() {
     const searchTermFromUrl = urlParams.get('searchTerm');
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
+    setIsSearchResults(true)
+
     }
+
+
   }, [location.search]);
   return (
     <header className='bg-white'>
@@ -32,11 +39,11 @@ export default function Header() {
         </Link>
         <form
           onSubmit={handleSubmit}
-          className='bg-slate-200 p-3 rounded-lg flex items-center'
+          className='bg-slate-200 p-3 rounded-lg md:flex items-center hidden '
         >
           <input
             type='text'
-            placeholder='Search...'
+            placeholder='Search location...'
             className='bg-transparent focus:outline-none w-24 sm:w-64 text-black'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -45,6 +52,7 @@ export default function Header() {
             <FaSearch className='text-slate-600' />
           </button>
         </form>
+        
         <div className="flex gap-4">
           <Link to="/" className="hidden md:inline">
             <button

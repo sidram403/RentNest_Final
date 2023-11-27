@@ -54,6 +54,11 @@ export default function Search() {
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
+      const locationList = [];
+       data.map((listing) =>{
+          locationList.push(listing.address)
+      })
+      console.log(locationList);
       if (data.length > 8) {
         setShowMore(true);
       } else {

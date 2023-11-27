@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Lottie from 'lottie-react'
+import animationData from '../../public/animation.json'
 import {
   signInStart,
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+import ListIcon from "@mui/icons-material/List";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -38,12 +41,11 @@ export default function SignIn() {
       }
       dispatch(signInSuccess(data));
       const storedLocation = await localStorage.getItem("location");
-      if(storedLocation){
-        navigate(`${storedLocation}`)
-        localStorage.removeItem("location")
-      }else{
+      if (storedLocation) {
+        navigate(`${storedLocation}`);
+        localStorage.removeItem("location");
+      } else {
         navigate("/");
-
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -51,14 +53,13 @@ export default function SignIn() {
   };
   return (
     <div className="hero min-h-screen bg-white">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+      <div className="hero-content  flex-col lg:flex-row-reverse">
+        <div className="text-center relative lg:text-left hidden sm:inline">
+          
+          <Lottie animationData={animationData} className="w-full h-full" />
+          <h1 className="absolute top-28 left-[35%] font-bold text-black text-3xl">Connect with Owners </h1>
+
+          
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-white p-5">
           <h1 className="text-5xl font-bold text-center text-black">Login</h1>
@@ -107,7 +108,5 @@ export default function SignIn() {
         </div>
       </div>
     </div>
-
-    
   );
 }

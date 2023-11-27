@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
@@ -7,11 +7,16 @@ import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import Testimonails from './Testimonails';
+import { FaSearch } from 'react-icons/fa';
+
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
   SwiperCore.use([Navigation]);
   console.log(offerListings);
   const videoRef = useRef(null);
@@ -33,6 +38,7 @@ export default function Home() {
         console.log(error);
       }
     };
+   
     const fetchRentListings = async () => {
       try {
         const res = await fetch('/api/listing/get?type=rent&limit=4');
@@ -55,6 +61,22 @@ export default function Home() {
     };
     fetchOfferListings();
   }, []);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('searchTerm', searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
   return (
     <div >
     <div className=" relative justify-center gap-6 text-center items-center py-12 md:py-36 px-3 max-w-6xl mx-auto flex flex-col md:flex-row z-10 ">
@@ -86,6 +108,25 @@ export default function Home() {
             </button>
           </Link>
         </div>
+        <div className='mt-8 inline md:hidden mx-auto'>
+        <form
+          onSubmit={handleSubmit}
+          className='bg-slate-200 p-3 rounded-lg flex items-center '
+        >
+          <input
+            type='text'
+            placeholder='Search location...'
+            className='bg-transparent focus:outline-none w-64 text-black'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button>
+            <FaSearch className='text-slate-600' />
+          </button>
+        </form>
+       
+        </div>
+       
       </div>
     </div>
 

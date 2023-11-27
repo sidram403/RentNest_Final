@@ -60,7 +60,10 @@ export default function Listing() {
       localStorage.setItem("location", link);
       navigate("/sign-in");
     } else {
+      setLoading(true);
       setContact(true);
+      setLoading(false);
+
     }
   };
 
@@ -163,34 +166,34 @@ export default function Listing() {
                     </div>
                   </div>
 
-                  <div className="stat place-items-center py-4 px-2">
+                  {listing.depositPrice && 
+                    <div className="stat place-items-center py-4 px-2">
                     <div className="stat-title text-black">Deposit Amount</div>
                     <div className="stat-value text-2xl">
                     ₹{" "}
-                      {
-                         listing.depositPrice.toLocaleString("en-IN")
+                      { listing.depositPrice?.toLocaleString("en-IN")
                         }
                     </div>
-                  </div>
+                  </div>}
                 </div>
               </div>
 
-              {!contact && listing.userRef !== currentUser._id && (
+              {!contact && listing.userRef !== currentUser?._id  && (
                 <button
                   onClick={handleGetOwnerDetails}
                   className="mt-10 flex w-full items-center justify-center uppercase rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Contact Owner
+                  {loading ? "Loading..." : "Contact Owner"}
                 </button>
               )}
-              {listing.userRef === currentUser._id && (
+              {listing.userRef === currentUser?._id && currentUser && (
                 <Link to={`/update-listing/${listing._id}`}>
                   <button className="mt-10 flex w-full items-center justify-center uppercase rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                     Edit Details
                   </button>
                 </Link>
               )}
-              {listing.userRef === currentUser._id && (
+              {listing.userRef === currentUser?._id && currentUser && (
                 <button  onClick={() => handleListingDelete(listing._id)} className="mt-10 flex w-full items-center justify-center uppercase rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                   Delete Details
                 </button>
