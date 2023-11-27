@@ -8,6 +8,8 @@ import ListingItem from '../components/ListingItem';
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import Testimonails from './Testimonails';
 import { FaSearch } from 'react-icons/fa';
+import Lottie from 'lottie-react'
+import animationData from '../../public/hero-animation.json'
 
 
 export default function Home() {
@@ -19,13 +21,8 @@ export default function Home() {
 
   SwiperCore.use([Navigation]);
   console.log(offerListings);
-  const videoRef = useRef(null);
 
-  useEffect(() => {
-    // Auto play the video when the component mounts
-    videoRef.current.play();
-
-  }, []);
+  
 
   useEffect(() => {
     const fetchOfferListings = async () => {
@@ -133,10 +130,7 @@ export default function Home() {
     {/* Swiper */}
     <div className="w-[100%] h-[700px] overflow-hidden absolute top-20 left-0 z-0">
     <div className="w-full h-full absolute top-0 left-0 bg-black opacity-50" />
-      <video className="w-full h-[100%] md:h-[90%] object-cover" ref={videoRef} muted loop>
-        <source src="./public/hero-video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <Lottie animationData={animationData} className=' h-[36rem] mt-2'/>
     </div>
     
 
