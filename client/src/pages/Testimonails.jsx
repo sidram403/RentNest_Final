@@ -6,7 +6,7 @@ const Testimonails = () => {
       id: 1,
       description:
         "I was skeptical about finding the right PG accommodation, but RentNest exceeded my expectations. The detailed property descriptions and verified listings gave me confidence, and the seamless process made it stress-free.",
-      date: "Nav 18, 2023",
+      date: "Nov 18, 2023",
       datetime: "2023-11-18",
       stars: 5,
       author: {

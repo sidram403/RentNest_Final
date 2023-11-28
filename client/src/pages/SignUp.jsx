@@ -42,7 +42,7 @@ export default function SignUp() {
     }
   };
   return (
-    <div className="hero min-h-screen bg-white">
+    <div className="hero bg-white">
       <div className="hero-content flex-col lg:flex-row-reverse">
       <div className="text-center relative lg:text-left hidden sm:inline">
           

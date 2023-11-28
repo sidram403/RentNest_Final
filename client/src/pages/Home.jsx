@@ -8,8 +8,6 @@ import ListingItem from '../components/ListingItem';
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import Testimonails from './Testimonails';
 import { FaSearch } from 'react-icons/fa';
-import Lottie from 'lottie-react'
-import animationData from '../../public/hero-animation.json'
 
 
 export default function Home() {
@@ -76,18 +74,18 @@ export default function Home() {
   };
   return (
     <div >
-    <div className=" relative justify-center gap-6 text-center items-center py-12 md:py-36 px-3 max-w-6xl mx-auto flex flex-col md:flex-row z-10 ">
+    <div className=" relative justify-center gap-6 text-center items-center py-8 md:py-20 md:pb-44 px-3 max-w-6xl mx-auto flex flex-col md:flex-row z-10 ">
       <div className="flex-1 flex justify-center items-start flex-col xl:px-0 sm:px-16 px-6 ">
         <div className="flex flex-row justify-between items-center w-full">
-          <h1 className="flex-1 font-poppins font-semibold sm:text-[55px] text-[45px] text-white sm:leading-[70px] leading-[75-px]">
+          <h1 className="flex-1 font-poppins font-semibold sm:text-[55px] text-[45px] text-slate-200 sm:leading-[70px] leading-[75-px]">
             Discover Most Suitable
             <span className="text-gradient"> Rental Property </span>{" "}
           </h1>
         </div>
-        <h1 className="font-poppins font-semibold sm:text-[55px] text-[45px] text-white sm:leading-[70px] leading-[75-px] w-full">
+        <h1 className="font-poppins font-semibold sm:text-[55px] text-[45px] text-slate-200 sm:leading-[70px] leading-[75-px] w-full">
           in Bengaluru.
         </h1>
-        <p className="font-poppins text-white font-bold text-[18px] leading-[30.8px] w-full  mt-5">
+        <p className="font-poppins text-slate-200 font-bold text-[18px] leading-[30.8px] w-full  mt-5">
           Unlock the Door to Your Perfect Home in Bangalore with RentNest!
         </p>
         <div className="w-full mt-10">
@@ -129,8 +127,8 @@ export default function Home() {
 
     {/* Swiper */}
     <div className="w-[100%] h-[700px] overflow-hidden absolute top-20 left-0 z-0">
-    <div className="w-full h-full absolute top-0 left-0 bg-black opacity-50" />
-      <Lottie animationData={animationData} className=' h-[36rem] mt-2'/>
+    <div className="w-full h-full absolute top-0 left-0 bg-black opacity-30" />
+      <img src="./hero_01.jpg" alt="hero image" className='w-full h-full object-cover' />
     </div>
     
 
