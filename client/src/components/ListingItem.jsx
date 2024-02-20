@@ -39,9 +39,9 @@ export default function ListingItem({ listing }) {
               {listing.address}
             </p>
           </div>
-          <p className="text-sm text-gray-600 line-clamp-1">
+          {/* <p className="text-sm text-gray-600 line-clamp-1">
             {listing.description}
-          </p>
+          </p> */}
           <div className="text-slate-700 flex gap-8 mx-auto">
             <div className="font-bold text-xs flex flex-col items-center">
               <FaBed className="text-green-700 text-lg" />
